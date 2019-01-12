@@ -9,15 +9,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,7 +42,7 @@ public class MainActivity
         AdapterView.OnItemClickListener, View.OnTouchListener {
 
     // ---------------------------------------------------------  Variables ---------------------------------------------------------
-
+    private Animation animBlink;
     private Button buttonOn_Off,buttonEnableDescoverability, buttonDescover;
     private ImageButton buttonForward, buttonReverse, buttonLeft,buttonRight, buttonStop;
     private BluetoothAdapter bluetoothAdapter;
@@ -171,6 +176,15 @@ public class MainActivity
         registerReceiver(mBroadcastReceiver4,intentFilter);
         listViewDevices.setOnItemClickListener(this);
 
+
+         animBlink= new AlphaAnimation(1, 0); //to change visibility from visible to invisible
+        animBlink.setDuration(500); //1 second duration for each animation cycle
+        animBlink.setInterpolator(new LinearInterpolator());
+        animBlink.setRepeatCount(Animation.INFINITE); //repeating indefinitely
+        animBlink.setRepeatMode(Animation.REVERSE); //animation will start from end point once ended.
+
+
+
     }
     // ---------------------------------------------------------  onDestroy ---------------------------------------------------------
 
@@ -249,25 +263,57 @@ public class MainActivity
                     case  R.id.buttonForward:
                         if(preForward==0){action(71);
                         preForward=1;
-
+                            v.startAnimation(animBlink); //to start animation
                         }
                         else{action(61);
                         preForward=0;
-
+                            v.clearAnimation(); //to start animation
                         }
                         break;
                     case  R.id.buttonReverse:
-                        if(preGabarites==0){action(72); preGabarites=1;}else{action(62); preGabarites=0;}
+                        if(preGabarites==0){
+                            action(72);
+                            preGabarites=1;
+                            v.startAnimation(animBlink); //to start animation
+                        }else{
+                            action(62);
+                            preGabarites=0;
+                            v.clearAnimation(); //to start animation
+                        }
                         break;
                     case  R.id.buttonLeft:
-                        if(preLeft==0){action(74); preLeft=1;}else{action(64); preLeft=0;}
+                        if(preLeft==0){
+                            action(74);
+                            preLeft=1;
+                            v.startAnimation(animBlink); //to start animation
+                        }else{
+                            action(64);
+                            preLeft=0;
+                            v.clearAnimation(); //to start animation
+                        }
                         break;
                     case  R.id.buttonRight:
-                        if(preRight==0){action(75); preRight=1;}else{action(65); preRight=0;}
+                        if(preRight==0){
+                            action(75);
+                            preRight=1;
+                            v.startAnimation(animBlink); //to start animation
+                        }else{
+                            action(65);
+                            preRight=0;
+                            v.clearAnimation(); //to start animation
+                        }
 
                         break;
                     case  R.id.buttonStop:
-                        if(preStop==0){action(73); preStop=1;}else{action(63); preStop=0;}
+                        if(preStop==0){
+                            action(73);
+                            preStop=1;
+                            v.startAnimation(animBlink); //to start animation
+                        }else{
+                            action(63);
+                            preStop=0;
+                            v.clearAnimation(); //to start animation
+                        }
                         break;
 
 
