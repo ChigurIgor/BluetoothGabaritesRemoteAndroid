@@ -70,7 +70,7 @@
       android:layout_height="100dp"
       android:layout_marginTop="8dp"
       android:layout_marginBottom="8dp"
-      android:background="@drawable/icon_arrow_green_2_top"
+      android:background="@drawable/icon_arrow_green_3_top"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="@+id/buttonStop"
       app:layout_constraintStart_toStartOf="@+id/buttonStop"
